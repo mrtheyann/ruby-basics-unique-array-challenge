@@ -2,30 +2,31 @@ require 'wrong/assert'
 include Wrong::Assert
 Wrong.config.color
 
-a = [1,3,7,3,2,5,1,1]
-b = [2,3,5,5,12]
-c = []
-d = [5, 5, 5, 5, 5, 5]
+case_1 = 45
+case_2 = 80
+case_3 = 4
 
-def unique_array(arr)
+def postman(amount)
 #BEGIN
-arr = arr.sort
-i = 0
-if arr.length > 1
-  while i <= arr.length-1
-    if arr[i] == arr[i+1]
-      arr.delete_at(i+1)
-    else
-      i += 1
-    end
+sum = 0
+price = [  [1, 0.1],
+           [5, 0.49],
+          [10, 0.97],
+          [20, 1.93],
+          [40, 3.85] ]
+current = 4
+while amount > 0 && current >= 0
+  if amount >= price[current][0]
+    amount -= price[current][0]
+    sum += price[current][1]
+  else
+    current -= 1
   end
 end
-return arr
-
+return sum.round(2)
 #END
 end
 
-assert { unique_array(a) == [1,2,3,5,7] }
-assert { unique_array(b) == [2,3,5,12] }
-assert { unique_array(c) == [] }
-assert { unique_array(d) == [5] }
+assert { postman(case_1) == 4.34 }
+assert { postman(case_2) == 7.7 }
+assert { postman(case_3) == 0.4 }
