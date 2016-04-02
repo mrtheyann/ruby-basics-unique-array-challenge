@@ -1,2 +1,2 @@
 test:
-	@ mocha --colors --harmony_destructuring
+	@ ruby solution.rb
